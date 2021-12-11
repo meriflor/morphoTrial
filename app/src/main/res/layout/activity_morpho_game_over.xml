@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MorphoGameOver"
+    android:background="@drawable/background"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/gameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GAME OVER"
+        android:textSize="100sp"
+        android:textColor="#f3f3f3"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/urScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0000"
+        android:textSize="50sp"
+        android:textColor="#f3f3f3"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/hiScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Highest Score"
+        android:textSize="30sp"
+        android:textColor="#f3f3f3"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/tryAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Do you want to try again?"
+        android:textSize="40sp"
+        android:textColor="#f3f3f3"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/yesText"
+            android:layout_width="120sp"
+            android:layout_height="60sp"
+            android:text="Yes"
+            android:textSize="50sp"
+            android:textColor="#f3f3f3"
+            android:gravity="center"
+            android:onClick="yesText"/>
+
+        <TextView
+            android:id="@+id/noText"
+            android:layout_width="120sp"
+            android:layout_height="60sp"
+            android:text="No"
+            android:textSize="50sp"
+            android:textColor="#f3f3f3"
+            android:gravity="center"
+            android:onClick="noText"/>
+
+    </LinearLayout>
+</LinearLayout>

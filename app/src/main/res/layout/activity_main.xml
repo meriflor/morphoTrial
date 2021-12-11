@@ -10,20 +10,20 @@
     android:gravity="center">
 
     <TextView
+        android:id="@+id/titleMorpho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MORPHO"
         android:textColor="#f3f3f3"
-        android:textSize="100dp"
-        android:fontFamily="@font/modular_pixels"/>
+        android:textSize="100dp"/>
 
     <TextView
+        android:id="@+id/playText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PLAY"
         android:textColor="#f3f3f3"
         android:textSize="50dp"
-        android:fontFamily="@font/modular_pixels"
         android:layout_marginTop="30dp"
         android:onClick="startGame"/>
 

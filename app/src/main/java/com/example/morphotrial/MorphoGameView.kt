@@ -1,18 +1,15 @@
 package com.example.morphotrial
 
-import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.*
 import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceView
+import androidx.core.content.res.ResourcesCompat
 
-
-class MorphoGameView(context: Context,
-                         private val size: Point)
-    : SurfaceView(context),
-    Runnable {
+class MorphoGameView(context: Context, private val size: Point) : SurfaceView(context), Runnable {
 
     // For making a noise
     private val soundPlayer = SoundPlayer(context)
@@ -79,6 +76,10 @@ class MorphoGameView(context: Context,
     private var uhOrOh: Boolean = false
     // When did we last play a menacing sound
     private var lastMenaceTime = System.currentTimeMillis()
+
+    val intent = Intent(context, MorphoGameOver::class.java)
+
+    val customTypeface = ResourcesCompat.getFont(context, R.font.modular_pixels)
 
 
 
@@ -344,7 +345,18 @@ class MorphoGameView(context: Context,
             }
         }
 
+
         if (lost) {
+            paused = true
+            intent.putExtra("score", score)
+            context.startActivity(intent)
+            /*val prefs = context.getSharedPreferences(
+                "Kotlin Invaders",
+                Context.MODE_PRIVATE)
+            val editor = prefs.edit()
+            val hiScore = prefs.getInt("highScore", 0)
+            editor.putInt("hiScore", hiScore)
+            editor.commit()
             paused = true
             lives = 3
             score = 0
@@ -352,7 +364,7 @@ class MorphoGameView(context: Context,
             invaders.clear()
             bricks.clear()
             invadersBullets.clear()
-            prepareLevel()
+            prepareLevel()*/
         }
     }
 
@@ -413,7 +425,8 @@ class MorphoGameView(context: Context,
             // Draw the score and remaining lives
             // Change the brush color
             paint.color = Color.argb(255, 255, 255, 255)
-            paint.textSize = 30f
+            paint.textSize = 50f
+            paint.typeface = customTypeface
             canvas.drawText("Score: $score   Lives: $lives Wave: " +
                     "$waves HI: $highScore", 20f, 75f, paint)
 
@@ -446,6 +459,8 @@ class MorphoGameView(context: Context,
 
             editor.apply()
         }
+
+        val hagard = prefs.getInt("highScore", 0)
     }
 
     // If SpaceInvadersActivity is started then
@@ -501,5 +516,4 @@ class MorphoGameView(context: Context,
         }
         return true
     }
-
 }
