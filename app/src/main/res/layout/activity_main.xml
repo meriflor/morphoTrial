@@ -9,13 +9,31 @@
     android:orientation="vertical"
     android:gravity="center">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/titleMorpho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/libre_franklin_black"
         android:text="MORPHO"
-        android:textColor="#f3f3f3"
-        android:textSize="100dp"/>
+        android:textColor="#000000"
+        android:textSize="100dp"
+        android:shadowColor="#32CD32"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="17.5"
+        android:textAllCaps="true"
+
+        app:outlineColor="#32cd32"
+        app:outlineWidth="3dp"/>-->
+
+    <com.example.morphotrial.TVOutline
+        android:id="@+id/titleMorpho"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/libre_franklin_black"
+        android:textColor="@color/limeGreen"
+        android:textSize="95sp"
+        android:text="MORPHO" />
 
     <TextView
         android:id="@+id/playText"
@@ -23,8 +41,8 @@
         android:layout_height="wrap_content"
         android:text="PLAY"
         android:textColor="#f3f3f3"
-        android:textSize="50dp"
-        android:layout_marginTop="30dp"
+        android:textSize="65sp"
+        android:layout_marginTop="20dp"
         android:onClick="startGame"/>
 
 </LinearLayout>

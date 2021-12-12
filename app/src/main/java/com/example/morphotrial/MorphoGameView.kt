@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.*
+import android.media.MediaPlayer
 import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceView
@@ -64,7 +65,7 @@ class MorphoGameView(context: Context, private val size: Point) : SurfaceView(co
 
     // To remember the high score
     private val prefs: SharedPreferences = context.getSharedPreferences(
-        "Kotlin Invaders",
+        "Morpho",
         Context.MODE_PRIVATE)
 
     private var highScore =  prefs.getInt("highScore", 0)
@@ -334,12 +335,13 @@ class MorphoGameView(context: Context, private val size: Point) : SurfaceView(co
                 if (RectF.intersects(playerShip.position, bullet.position)) {
                     bullet.isActive = false
                     lives --
-                    soundPlayer.playSound(SoundPlayer.playerExplodeID)
 
                     // Is it game over?
                     if (lives == 0) {
                         lost = true
                         break
+                    }else{
+                        soundPlayer.playSound(SoundPlayer.playerExplodeID)
                     }
                 }
             }
@@ -350,21 +352,6 @@ class MorphoGameView(context: Context, private val size: Point) : SurfaceView(co
             paused = true
             intent.putExtra("score", score)
             context.startActivity(intent)
-            /*val prefs = context.getSharedPreferences(
-                "Kotlin Invaders",
-                Context.MODE_PRIVATE)
-            val editor = prefs.edit()
-            val hiScore = prefs.getInt("highScore", 0)
-            editor.putInt("hiScore", hiScore)
-            editor.commit()
-            paused = true
-            lives = 3
-            score = 0
-            waves = 1
-            invaders.clear()
-            bricks.clear()
-            invadersBullets.clear()
-            prepareLevel()*/
         }
     }
 
@@ -378,7 +365,7 @@ class MorphoGameView(context: Context, private val size: Point) : SurfaceView(co
             canvas.drawBitmap(bitmap1, null, rect, null)
 
             // Choose the brush color for drawing
-            paint.color = Color.argb(255, 182, 175, 172)
+            paint.color = Color.argb(255, 2, 138, 5)
 
             // Draw all the game objects here
             // Now draw the player spaceship
@@ -424,11 +411,25 @@ class MorphoGameView(context: Context, private val size: Point) : SurfaceView(co
 
             // Draw the score and remaining lives
             // Change the brush color
-            paint.color = Color.argb(255, 255, 255, 255)
+            paint.color = Color.argb(255, 243, 243, 243)
             paint.textSize = 50f
             paint.typeface = customTypeface
-            canvas.drawText("Score: $score   Lives: $lives Wave: " +
-                    "$waves HI: $highScore", 20f, 75f, paint)
+            canvas.drawText("Score: $score ", 20f, 60f, paint)
+
+            paint.color = Color.argb(255, 50, 205, 50)
+            paint.textSize = 50f
+            paint.typeface = customTypeface
+            canvas.drawText("\nLives: $lives", 200f, 60f, paint)
+
+            paint.color = Color.argb(255, 255, 255, 0)
+            paint.textSize = 50f
+            paint.typeface = customTypeface
+            canvas.drawText("\nWave: $waves", 380f, 60f, paint)
+
+            paint.color = Color.argb(255, 255, 0, 0)
+            paint.textSize = 50f
+            paint.typeface = customTypeface
+            canvas.drawText("\nHI: $highScore", 560f, 60f, paint)
 
             // Draw everything to the screen
             holder.unlockCanvasAndPost(canvas)
@@ -446,7 +447,7 @@ class MorphoGameView(context: Context, private val size: Point) : SurfaceView(co
         }
 
         val prefs = context.getSharedPreferences(
-            "Kotlin Invaders",
+            "Morpho",
             Context.MODE_PRIVATE)
 
         val oldHighScore = prefs.getInt("highScore", 0)
@@ -459,8 +460,6 @@ class MorphoGameView(context: Context, private val size: Point) : SurfaceView(co
 
             editor.apply()
         }
-
-        val hagard = prefs.getInt("highScore", 0)
     }
 
     // If SpaceInvadersActivity is started then
