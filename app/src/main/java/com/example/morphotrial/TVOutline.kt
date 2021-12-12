@@ -23,8 +23,10 @@ class TVOutline : AppCompatTextView {
     private var theText: String = this.text.toString()
 
     override fun onDraw(canvas: Canvas) {
-        val px = (canvas?.width?.div(2))
-        val py = ((canvas?.height?.div(2))?.minus(((paint.descent() + paint.ascent()) / 2)))
+        height = 150
+
+        val px = (canvas.width.div(2))
+        val py = ((height.div(2)).minus(((paint.descent() + paint.ascent()) / 2)))
 
         paint.textSize = this.textSize
         paint.typeface = this.typeface
