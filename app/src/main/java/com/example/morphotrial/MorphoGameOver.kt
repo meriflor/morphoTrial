@@ -65,6 +65,6 @@ class MorphoGameOver : Activity() {
     fun noText(view: View) {
         val player: MediaPlayer = MediaPlayer.create(this, R.raw.tap)
         player.start()
-        this.finishActivity(0)
+        this.finishAffinity()
     }
 }
