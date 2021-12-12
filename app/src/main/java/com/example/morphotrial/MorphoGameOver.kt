@@ -7,14 +7,13 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.content.res.AssetFileDescriptor
-import android.media.AudioManager
 import android.media.MediaPlayer
-import android.media.SoundPool
-import android.provider.MediaStore
 
 
 class MorphoGameOver : Activity() {
+
+    private var player: MediaPlayer = MediaPlayer()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_morpho_game_over)
@@ -40,30 +39,29 @@ class MorphoGameOver : Activity() {
             Context.MODE_PRIVATE)
         val highScore = prefs.getInt("highScore", 0)
 
-        //Guboooooooot ginoo ko gabalik2 lamang kapuy search haha
         if(score >= highScore){
             gameText.text = "CONGRATULATIONS!!"
             urScore.text = score.toString()
-            hiScore.text = "You have surpassed your limits!"
-            val congrats: MediaPlayer = MediaPlayer.create(this, R.raw.congrats)
-            congrats.start()
+            hiScore.text = "New Record!"
+            player = MediaPlayer.create(this, R.raw.congrats)
+            player.start()
         }else{
-            val failed: MediaPlayer = MediaPlayer.create(this, R.raw.failed)
-            failed.start()
+            player = MediaPlayer.create(this, R.raw.failed)
+            player.start()
             urScore.text = score.toString()
             hiScore.text = "Highest Score: $highScore"
         }
     }
 
     fun yesText(view: View) {
-        val player: MediaPlayer = MediaPlayer.create(this, R.raw.tap)
+        player = MediaPlayer.create(this, R.raw.tap)
         player.start()
         intent = Intent(this, MorphoGameActivity::class.java)
         startActivity(intent)
         finish()
     }
     fun noText(view: View) {
-        val player: MediaPlayer = MediaPlayer.create(this, R.raw.tap)
+        player = MediaPlayer.create(this, R.raw.tap)
         player.start()
         this.finishAffinity()
     }

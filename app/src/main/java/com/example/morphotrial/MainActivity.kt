@@ -12,11 +12,13 @@ import android.media.MediaPlayer
 
 
 class MainActivity : Activity() {
+
+    private var player: MediaPlayer = MediaPlayer()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val player: MediaPlayer = MediaPlayer.create(this, R.raw.opening_bg)
+        player = MediaPlayer.create(this, R.raw.opening_bg)
         player.start()
 
         var playText: TextView = findViewById(R.id.playText)
@@ -27,7 +29,8 @@ class MainActivity : Activity() {
     }
 
     fun startGame(view: View) {
-        val player: MediaPlayer = MediaPlayer.create(this, R.raw.tap)
+        player.stop()
+        player = MediaPlayer.create(this, R.raw.tap)
         player.start()
         val intent = Intent(this, MorphoGameActivity::class.java)
         startActivity(intent)

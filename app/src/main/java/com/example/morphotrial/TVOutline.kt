@@ -6,21 +6,23 @@ import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 
+
 class TVOutline : AppCompatTextView {
 
     constructor(context: Context) : this(context, null)
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
-    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
 
     private val paint: Paint = Paint()
-    private var theText: String? = null
+    private var theText: String = this.text.toString()
 
-    override fun onDraw(canvas: Canvas?) {
-
-        theText = this.text.toString()
-
+    override fun onDraw(canvas: Canvas) {
         val px = (canvas?.width?.div(2))
         val py = ((canvas?.height?.div(2))?.minus(((paint.descent() + paint.ascent()) / 2)))
 
@@ -34,7 +36,7 @@ class TVOutline : AppCompatTextView {
 
 
         if (px != null && py != null) {
-            canvas?.drawText(theText.toString(), px.toFloat(), py.toFloat(), paint)
+            canvas?.drawText(theText, px.toFloat(), py, paint)
         }
     }
 }

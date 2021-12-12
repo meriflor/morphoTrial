@@ -417,18 +417,12 @@ class MorphoGameView(context: Context, private val size: Point) : SurfaceView(co
             canvas.drawText("Score: $score ", 20f, 60f, paint)
 
             paint.color = Color.argb(255, 50, 205, 50)
-            paint.textSize = 50f
-            paint.typeface = customTypeface
             canvas.drawText("\nLives: $lives", 200f, 60f, paint)
 
             paint.color = Color.argb(255, 255, 255, 0)
-            paint.textSize = 50f
-            paint.typeface = customTypeface
             canvas.drawText("\nWave: $waves", 380f, 60f, paint)
 
             paint.color = Color.argb(255, 255, 0, 0)
-            paint.textSize = 50f
-            paint.typeface = customTypeface
             canvas.drawText("\nHI: $highScore", 560f, 60f, paint)
 
             // Draw everything to the screen
