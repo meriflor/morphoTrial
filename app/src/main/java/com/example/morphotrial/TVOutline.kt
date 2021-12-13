@@ -23,7 +23,7 @@ class TVOutline : AppCompatTextView {
     private var theText: String = this.text.toString()
 
     override fun onDraw(canvas: Canvas) {
-        height = 150
+        height = 210
 
         val px = (canvas.width.div(2))
         val py = ((height.div(2)).minus(((paint.descent() + paint.ascent()) / 2)))

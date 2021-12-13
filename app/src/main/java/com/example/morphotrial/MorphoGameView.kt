@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.*
-import android.media.MediaPlayer
 import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceView
@@ -78,9 +77,9 @@ class MorphoGameView(context: Context, private val size: Point) : SurfaceView(co
     // When did we last play a menacing sound
     private var lastMenaceTime = System.currentTimeMillis()
 
-    val intent = Intent(context, MorphoGameOver::class.java)
+    private val intent = Intent(context, MorphoGameOver::class.java)
 
-    val customTypeface = ResourcesCompat.getFont(context, R.font.modular_pixels)
+    private val customTypeface = ResourcesCompat.getFont(context, R.font.modular_pixels)
 
 
 
@@ -411,19 +410,39 @@ class MorphoGameView(context: Context, private val size: Point) : SurfaceView(co
 
             // Draw the score and remaining lives
             // Change the brush color
-            paint.color = Color.argb(255, 243, 243, 243)
-            paint.textSize = 50f
-            paint.typeface = customTypeface
-            canvas.drawText("Score: $score ", 20f, 60f, paint)
+            val calc = (height - 60f)
 
-            paint.color = Color.argb(255, 50, 205, 50)
-            canvas.drawText("\nLives: $lives", 200f, 60f, paint)
+            if(calc > 500){
+                paint.textSize = 60f
+                paint.color = Color.argb(255, 243, 243, 243)
+                //paint.textSize = 50f
+                paint.typeface = customTypeface
+                canvas.drawText("Score: $score ", 20f, 60f, paint)
 
-            paint.color = Color.argb(255, 255, 255, 0)
-            canvas.drawText("\nWave: $waves", 380f, 60f, paint)
+                paint.color = Color.argb(255, 50, 205, 50)
+                canvas.drawText("\nLives: $lives", 220f, 60f, paint)
 
-            paint.color = Color.argb(255, 255, 0, 0)
-            canvas.drawText("\nHI: $highScore", 560f, 60f, paint)
+                paint.color = Color.argb(255, 255, 255, 0)
+                canvas.drawText("\nWave: $waves", 420f, 60f, paint)
+
+                paint.color = Color.argb(255, 255, 0, 0)
+                canvas.drawText("\nHI: $highScore", 620f, 60f, paint)
+            }else{
+                paint.textSize = 50f
+                paint.color = Color.argb(255, 243, 243, 243)
+                //paint.textSize = 50f
+                paint.typeface = customTypeface
+                canvas.drawText("Score: $score ", 20f, 60f, paint)
+
+                paint.color = Color.argb(255, 50, 205, 50)
+                canvas.drawText("\nLives: $lives", 180f, 60f, paint)
+
+                paint.color = Color.argb(255, 255, 255, 0)
+                canvas.drawText("\nWave: $waves", 340f, 60f, paint)
+
+                paint.color = Color.argb(255, 255, 0, 0)
+                canvas.drawText("\nHI: $highScore", 500f, 60f, paint)
+            }
 
             // Draw everything to the screen
             holder.unlockCanvasAndPost(canvas)
